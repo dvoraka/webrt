@@ -1,0 +1,94 @@
+# Copyright (C) 2014
+# This file is distributed under the same license as the PACKAGE package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-26 17:50+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: dvoraka <alen.dvorak@gmail.com>\n"
+"Language-Team: Czech\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+
+#: html/webapp/add_ticket.html:6 html/webapp/index.html:6
+#: html/webapp/message.html:5 html/webapp/registration.html:5
+#: html/webapp/registration.html.py:11 html/webapp/show_ticket.html:6
+msgid "Helpdesk"
+msgstr "Helpdesk"
+
+#: html/webapp/add_ticket.html:10
+msgid "Create ticket"
+msgstr "Vytvořit požadavek"
+
+#: html/webapp/add_ticket.html:14
+msgid "Submit"
+msgstr "Odeslat"
+
+#: html/webapp/base.html:19
+msgid "Logout"
+msgstr "Odhlásit"
+
+#: html/webapp/comment.html:10
+msgid "Add comment"
+msgstr "Přidat komentář"
+
+#: html/webapp/comment.html:14
+msgid "Add"
+msgstr "Přidat"
+
+#: html/webapp/index.html:20
+msgid "Your tickets"
+msgstr "Přehled vašich požadavků"
+
+#: html/webapp/index.html:23
+msgid "Ticket"
+msgstr "Požadavek"
+
+#: html/webapp/index.html:31
+msgid "Add new ticket"
+msgstr "Přidat nový požadavek"
+
+#: html/webapp/login.html:11
+msgid "Login to helpdesk"
+msgstr "Přihlášení do systému Helpdesk"
+
+#: html/webapp/login.html:15
+msgid "Sign in"
+msgstr "Přihlásit"
+
+#: html/webapp/registration.html:11
+msgid "Registration to"
+msgstr "Registrovat se do"
+
+#: html/webapp/registration.html:15
+msgid "Register"
+msgstr "Registrovat"
+
+#: html/webapp/show_ticket.html:26
+msgid "Ticket's detail"
+msgstr "Detail požadavku"
+
+#: html/webapp/show_ticket.html:40
+msgid "Comment"
+msgstr "Komentovat"
+
+#: webapp/forms.py:30
+msgid "username"
+msgstr "login"
+
+#: webapp/forms.py:32
+msgid "password"
+msgstr "heslo"
+
+#: webapp/views.py:190
+msgid "You have been logged out!"
+msgstr "Byl jste odhlášen ze systému!"
+
+#: webapp/views.py:324
+msgid "User account has been created."
+msgstr "Účet do systému byl vytvořen."
