@@ -1,0 +1,35 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans "Helpdesk" %}
+{% endblock %}
+
+{% block body %}
+
+    <script>
+    $(document).ready(function() {
+        $("#newt").click(function() {
+            window.location="/addt/";
+        });
+    });
+    </script>
+
+    <div id='center'>
+        <h1>{% trans "Your tickets" %}</h1>
+
+        <table>
+            <th>{% trans "Ticket" %}</th>
+            <!-- <th style='width:10%;'>Datum</th> -->
+            {% for ticket in tickets %}
+            <tr>
+                <td><a href='/show_ticket/{{ ticket.0 }}'/>{{ ticket.1 }}</a></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td class='addnew' id='newt'><a href='/addt/'>{% trans "Add new ticket" %}</a></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

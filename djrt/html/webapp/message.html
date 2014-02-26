@@ -1,0 +1,14 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans "Helpdesk" %}
+{% endblock %}
+
+{% block logout %}
+{% endblock %}
+
+{% block body %}
+    <h1 class='login'>{{ message }}</h1>
+{% endblock %}

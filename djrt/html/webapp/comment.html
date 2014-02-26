@@ -1,0 +1,17 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans "Helpdesk" %}
+{% endblock %}
+
+{% block body %}
+<h1>{% trans "Add comment" %}</h1>
+<form action="/addc/{{ ticket_id }}/" method="post">{% csrf_token %}
+    <fieldset>
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Add" %}" />
+    </fieldset>
+</form>
+{% endblock %}

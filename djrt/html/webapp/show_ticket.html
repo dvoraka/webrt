@@ -1,0 +1,47 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans "Helpdesk" %}
+{% endblock %}
+
+{% block body %}
+
+    <script>
+    $(window).load(function(){
+        // DOM pro scrolling
+        $("html, body").animate({ scrollTop: $(document).height() }, 500);
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $("#newc").click(function() {
+            window.location='/addc/{{ ticket.id_ }}/';
+        });
+    });
+    </script>
+
+    <div id='center'>
+        <h1>{% trans "Ticket's detail" %}</h1>
+
+        {% for hist_entry in ticket.history.history_list %}
+        <table class='ticket'>
+            <th colspan='2'>{{ ticket.subject }}</th>
+               <tr>
+                  <td class='date'>{{ hist_entry.Created }}</td>
+                  <td class='author'>{{ hist_entry.Creator }}</td>
+               </tr>
+               <tr>
+                  <td colspan='2'><pre>{{ hist_entry.Content }}</pre></td>
+               </tr>
+               {% if forloop.last %}
+               <tr>
+                  <td class='addnew' id='newc' colspan='2'><a href='/addc/{{ ticket.id_ }}'>{% trans "Comment" %}</a></td>
+               </tr>
+               {% endif %}
+         </table>
+         {% endfor %}
+
+    </div>
+{% endblock %}

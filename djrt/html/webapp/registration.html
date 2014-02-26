@@ -1,0 +1,20 @@
+{% extends 'webapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans "Helpdesk" %}
+{% endblock %}
+
+{% block logout %}
+{% endblock %}
+
+{% block body %}
+    <h1 class='login'>{% trans "Registration to" %}&nbsp;{% trans "Helpdesk" %}</h1>
+    <form action='' method='post'>{% csrf_token %}
+        <fieldset>
+            {{ form.as_p }}
+            <input type='submit' value='{% trans "Register" %}' />
+        </fieldset>
+    </form>
+{% endblock %}
