@@ -1,3 +1,4 @@
 *.py[co]
 logo.png
 settings.py
+djrt.db
