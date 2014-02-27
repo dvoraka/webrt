@@ -180,4 +180,11 @@ PYRT = {
     # login page address
     'LOGIN_PAGE': '/login/',
 
+    'PLACES': (
+        ('1F', 'First floor'),
+        ('2F', 'Second floor'),
+    ),
+    # default choice
+    'IPLACE': '2F',
+
 }
