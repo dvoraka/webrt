@@ -174,12 +174,16 @@ PYRT = {
     'ROOT': 'root',
     'ROOT_PASS': '',
     # RT4 password for all users
-    'GLOBAL_PASS': '',
+    'GLOBAL_PASS': 'password',
     # daylight saving - 1 or 2 for CZ
     'TIME_DELTA': 1,
     # login page address
     'LOGIN_PAGE': '/login/',
-
+    # default queue
+    'QUEUE': 'support',
+    # Django password for users
+    'DJ_PASS': 'password',
+    # places
     'PLACES': (
         ('1F', 'First floor'),
         ('2F', 'Second floor'),
