@@ -2,8 +2,14 @@
 
 import ldap
 
+
 class LDAP:
     
+    def __init__(self, host='ldaps://localhost'):
+        
+        self.host = host
+        self.conn = None
+
     def bind(self, user, password):
         pass
 
