@@ -162,7 +162,7 @@ LOGGING = {
     }
 }
 
-# py-rt configuration
+# webapp configuration
 PYRT = {
 
     # RT4 server REST URL
