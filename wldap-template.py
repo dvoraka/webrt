@@ -14,10 +14,18 @@ class LDAP:
         self.conn = None
 
     def bind(self, user, password):
+        '''Bind to LDAP.'''
+
+        # Example
+        #self.conn = ldap.initialize(self.host)
+        #ret_val = self.conn.simple_bind_s(user, password)
+
+        #return ret_val
         pass
 
     def check_password(self, login, password):
         
+        # can be used self.bind(login, password) for check
         return True
 
     def is_staff(self, cid):
