@@ -32,6 +32,10 @@ def show_ticket(request, id_):
     ticket = rt.get_ticket(id_)
     ticket.load_all()
 
+    if ticket.creator != request.user.username:
+
+        print('This is not your ticket')
+
     # set user's timezone
     for history in ticket.history.history_list:
 
