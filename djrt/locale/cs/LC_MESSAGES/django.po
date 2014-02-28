@@ -80,11 +80,11 @@ msgstr "Komentovat"
 
 #: webapp/forms.py:10
 msgid "Subject"
-msgstr ""
+msgstr "Předmět"
 
 #: webapp/forms.py:13
 msgid "Place"
-msgstr ""
+msgstr "Umístění"
 
 #: webapp/forms.py:27
 msgid "username"
