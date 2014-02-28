@@ -21,7 +21,9 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = (
+    # Default auth backend
     'django.contrib.auth.backends.ModelBackend',
+    # Custom auth backends
     #'webapp.backends.CustomBackend',
 )
 
