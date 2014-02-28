@@ -338,3 +338,10 @@ def message(request):
         'message': message,
 
     })
+
+
+def show_msg(request, message):
+
+    request.session['message'] = message
+
+    return HttpResponseRedirect('/message/')
