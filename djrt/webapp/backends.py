@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
@@ -6,6 +8,9 @@ import pyrt
 
 
 class CustomBackend(object):
+    '''Custom auth backend.
+    
+    It is disabled in settings.py by default.'''
     
     supports_inactive_user = False
 
@@ -17,7 +22,7 @@ class CustomBackend(object):
         # 3. RT user exists
 
         # CAS
-        import wldap
+        import wldap # web LDAP module
         ldap = wldap.LDAP()
         authenticated = ldap.check_password(username, password)
         #print('CAS: {}'.format(authenticated))
