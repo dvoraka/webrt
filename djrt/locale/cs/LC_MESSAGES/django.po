@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 17:50+0100\n"
+"POT-Creation-Date: 2014-02-28 11:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: dvoraka <alen.dvorak@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -15,9 +15,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
-#: html/webapp/add_ticket.html:6 html/webapp/index.html:6
-#: html/webapp/message.html:5 html/webapp/registration.html:5
-#: html/webapp/registration.html.py:11 html/webapp/show_ticket.html:6
+#: html/webapp/add_ticket.html:6 html/webapp/comment.html:6
+#: html/webapp/index.html:6 html/webapp/login.html:6
+#: html/webapp/message.html:6 html/webapp/registration.html:6
+#: html/webapp/registration.html.py:13 html/webapp/show_ticket.html:6
 msgid "Helpdesk"
 msgstr "Helpdesk"
 
@@ -53,19 +54,19 @@ msgstr "Požadavek"
 msgid "Add new ticket"
 msgstr "Přidat nový požadavek"
 
-#: html/webapp/login.html:11
+#: html/webapp/login.html:13
 msgid "Login to helpdesk"
 msgstr "Přihlášení do systému Helpdesk"
 
-#: html/webapp/login.html:15
+#: html/webapp/login.html:17
 msgid "Sign in"
 msgstr "Přihlásit"
 
-#: html/webapp/registration.html:11
+#: html/webapp/registration.html:13
 msgid "Registration to"
 msgstr "Registrovat se do"
 
-#: html/webapp/registration.html:15
+#: html/webapp/registration.html:17
 msgid "Register"
 msgstr "Registrovat"
 
@@ -77,18 +78,50 @@ msgstr "Detail požadavku"
 msgid "Comment"
 msgstr "Komentovat"
 
-#: webapp/forms.py:30
+#: webapp/forms.py:10
+msgid "Subject"
+msgstr ""
+
+#: webapp/forms.py:13
+msgid "Place"
+msgstr ""
+
+#: webapp/forms.py:27
 msgid "username"
 msgstr "login"
 
-#: webapp/forms.py:32
+#: webapp/forms.py:29
 msgid "password"
 msgstr "heslo"
 
-#: webapp/views.py:190
+#: webapp/forms.py:36
+msgid "CAS login"
+msgstr "CAS login"
+
+#: webapp/forms.py:38
+msgid "CAS password"
+msgstr "CAS heslo"
+
+#: webapp/forms.py:41
+msgid "Email"
+msgstr "email"
+
+#: webapp/forms.py:44
+msgid "English"
+msgstr ""
+
+#: webapp/forms.py:45
+msgid "Czech"
+msgstr ""
+
+#: webapp/forms.py:48
+msgid "Language"
+msgstr "Jazyk"
+
+#: webapp/views.py:166
 msgid "You have been logged out!"
 msgstr "Byl jste odhlášen ze systému!"
 
-#: webapp/views.py:324
+#: webapp/views.py:306
 msgid "User account has been created."
 msgstr "Účet do systému byl vytvořen."
