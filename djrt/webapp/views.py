@@ -256,10 +256,9 @@ def registration(request):
             email = form.cleaned_data['email']
             lang = form.cleaned_data['lang']
 
-################################################
-#            myldap = wldap.LDAP()
-#            cas_auth = myldap.check_password(login, password)
-#            staff = myldap.is_staff(login)
+            myldap = wldap.LDAP()
+            cas_auth = myldap.check_password(login, password)
+            staff = myldap.is_staff(login)
 ################################################
 ### DEBUG ONLY
 #####################
