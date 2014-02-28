@@ -34,7 +34,12 @@ def show_ticket(request, id_):
 
     if ticket.creator != request.user.username:
 
-        print('This is not your ticket')
+        #print('This is not your ticket')
+        request.session['message'] = (
+            _("Permission denied.")
+        )
+
+        return HttpResponseRedirect('/message/')
 
     # set user's timezone
     for history in ticket.history.history_list:
