@@ -114,6 +114,55 @@ function guess_system() {
 
 }
 
+function complete_install() {
+
+    echo 'Complete install'
+
+}
+
+function update() {
+
+    echo 'Update'
+
+}
+
+function show_menu() {
+
+    echo '----'
+    echo '  1) install'
+    echo '  2) update'
+    echo '  9) quit'
+    echo ''
+
+}
+
+function proccess_input() {
+
+    read -p 'Enter choice: ' choice
+    #echo $choice
+
+    echo ''
+    case $choice in
+
+        1)
+            complete_install
+        ;;
+        2)
+            update
+        ;;
+        9)
+            exit 0
+        ;;
+
+        *)
+            echo 'Unknown choice'
+        ;;
+    esac
+
+    echo ''
+
+}
+
 function main() {
 
     check_git
@@ -122,6 +171,12 @@ function main() {
     echo $DISTRIBUTION
     #install_git
     #install_RT4
+
+    while true
+    do
+        show_menu
+        proccess_input
+    done
 
 }
 
