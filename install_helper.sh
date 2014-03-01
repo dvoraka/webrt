@@ -14,8 +14,31 @@ DISTRIBUTION=''
 
 function clone_repos() {
 
+    E=0
+
+    echo 'Cloning Webrt...'
     git clone $WEBRT_GIT
+    if [ $? -eq 0 ]
+    then
+        echo 'Success.'
+    else
+        echo 'Webrt problem.'
+        E=1
+    fi
+    echo ''
+
+    echo 'Cloning py-rt...'
     git clone $PYRT_GIT
+    if [ $? -eq 0 ]
+    then
+        echo 'Success.'
+    else
+        echo 'py-rt problem.'
+        E=1
+    fi
+    echo ''
+
+    return $E
 
 }
 
@@ -117,6 +140,9 @@ function guess_system() {
 function complete_install() {
 
     echo 'Complete install'
+    # guess_system
+    # check_git
+    # clone_repos
 
 }
 
