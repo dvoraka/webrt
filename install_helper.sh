@@ -10,6 +10,7 @@ WEBRT_GIT=https://github.com/dvoraka/webrt.git
 PYRT_GIT=https://github.com/dvoraka/py-rt.git
 
 SYSTEM=''
+DISTRIBUTION=''
 
 function clone_repos() {
 
@@ -33,9 +34,10 @@ function check_git() {
 
 function install_git() {
 
-    if [ "$SYSTEM" == 'debian' ]
+    if [ "$DISTRIBUTION" == 'debian' ]
     then
         debian_install_git
+        return 1
     fi
 
 }
@@ -61,9 +63,10 @@ function check_RT4() {
 
 function install_RT4() {
 
-    if [ "$SYSTEM" == 'debian' ]
+    if [ "$DISTRIBUTION" == 'debian' ]
     then
         debian_install_RT4
+        return 1
     fi
 
 }
@@ -76,9 +79,13 @@ function debian_install_RT4() {
 
 function guess_system() {
 
+    SYSTEM=`uname`
+    # $OSTYPE can be used too
+
+    # Debian, Ubuntu
     if [ -f /etc/debian_version ]
     then
-        SYSTEM='debian'
+        DISTRIBUTION='debian'
     fi
 
 }
@@ -88,7 +95,7 @@ function main() {
     check_git
     check_RT4
     guess_system
-    echo $SYSTEM
+    echo $DISTRIBUTION
     #install_git
     #install_RT4
 
