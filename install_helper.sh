@@ -120,6 +120,44 @@ function ubuntu_install_RT4() {
 
 }
 
+function create_virtenv() {
+    
+    while true
+    do
+        if hash virtualenv 2>/dev/null
+        then
+            echo 'Creating new virtual environment...'
+            mkdir virtenvs
+            virtualenv virtenvs/webrt
+            echo 'Done.'
+            break
+        else
+            echo "You don't have virtualenv package."
+            echo 'Do you want to install it?'
+            read -p 'y/n: ' choice
+            if [ "$choice" == 'y' ]
+            then
+                install_virtualenv
+            else
+                break
+            fi
+        fi
+    done
+
+}
+
+function install_virtualenv() {
+
+    debian_install_ve
+
+}
+
+function debian_install_ve() {
+
+    su root -c 'apt-get install python-virtualenv'
+
+}
+
 function guess_system() {
 
     SYSTEM=`uname`
@@ -143,6 +181,7 @@ function complete_install() {
     # guess_system
     # check_git
     # clone_repos
+    # create_virtenv
 
 }
 
@@ -191,8 +230,6 @@ function proccess_input() {
 
 function main() {
 
-    check_git
-    check_RT4
     guess_system
     echo $DISTRIBUTION
     #install_git
