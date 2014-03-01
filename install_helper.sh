@@ -38,13 +38,23 @@ function install_git() {
     then
         debian_install_git
         return 1
+    elif [ "$DISTRIBUTION" == 'ubuntu' ]
+    then
+        ubuntu_install_git
+        return 2
     fi
 
 }
 
 function debian_install_git() {
 
-    apt-get install git-core
+    su root -c 'apt-get install git-core'
+
+}
+
+function ubuntu_install_git() {
+
+    sudo apt-get install git-core
 
 }
 
@@ -67,13 +77,23 @@ function install_RT4() {
     then
         debian_install_RT4
         return 1
+    elif [ "$DISTRIBUTION" == 'ubuntu' ]
+    then
+        ubuntu_install_RT4
+        return 2
     fi
 
 }
 
 function debian_install_RT4() {
 
-    apt-get install request-tracker4
+    su root -c 'apt-get install request-tracker4'
+
+}
+
+function ubuntu_install_RT4() {
+
+    sudo apt-get install request-tracker4
 
 }
 
@@ -82,10 +102,14 @@ function guess_system() {
     SYSTEM=`uname`
     # $OSTYPE can be used too
 
-    # Debian, Ubuntu
-    if [ -f /etc/debian_version ]
+    DISTID=`lsb_release -s -i`
+
+    if [ "$DISTID" == 'Debian' ]
     then
         DISTRIBUTION='debian'
+    elif [ "$DISTID" == 'Ubuntu' ]
+    then
+        DISTRIBUTION='ubuntu'
     fi
 
 }
