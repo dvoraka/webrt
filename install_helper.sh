@@ -44,12 +44,10 @@ function clone_repos() {
 
 function check_git() {
 
-    if [ -x /usr/bin/git ]
+    if hash git 2>/dev/null
     then
-        echo 'Git OK'
         return 0
     else
-        echo 'You need Git installed.'
         return 1
     fi
 
@@ -83,6 +81,7 @@ function ubuntu_install_git() {
 
 function check_RT4() {
 
+    # check config directory
     if [ -d /etc/request-tracker4 ]
     then
         echo 'RT4 OK'
@@ -178,10 +177,40 @@ function guess_system() {
 function complete_install() {
 
     echo 'Complete install'
-    # guess_system
-    # check_git
-    # clone_repos
-    # create_virtenv
+    echo '----'
+
+    guess_system
+
+    echo 'Checking Git...'
+    if check_git
+    then
+        echo 'Git - OK'
+    else
+        echo "You don't have Git."
+        echo 'Do you want to install it?'
+        read -p 'y/n: ' choice
+        if [ "$choice" == 'y' ]
+        then
+            install_git
+        else
+            exit 1
+        fi
+    fi
+
+    echo ''
+
+    echo 'Cloning repositories...'
+    if clone_repos
+    then
+        echo 'Download - OK'
+    else
+        echo 'Repositories problem'
+        exit 1
+    fi
+
+    echo ''
+
+    create_virtenv
 
 }
 
@@ -215,7 +244,7 @@ function proccess_input() {
         2)
             update
         ;;
-        9)
+        9 | q)
             exit 0
         ;;
 
@@ -232,9 +261,8 @@ function main() {
 
     guess_system
     echo $DISTRIBUTION
-    #install_git
-    #install_RT4
 
+    # show menu
     while true
     do
         show_menu
