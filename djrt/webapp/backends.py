@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.conf import settings
+from requests import ConnectionError
+
 import pyrt
 
 
@@ -38,7 +40,15 @@ class CustomBackend(object):
             settings.PYRT.get('ADMIN', ''),
             settings.PYRT.get('PASS', ''),
         )
-        RT_exists = rt.user_exists(username)
+        try:
+
+            RT_exists = rt.user_exists(username)
+
+        except ConnectionError as e:
+            
+            print(e)
+            RT_exists = False
+
         #print('RT: {}'.format(RT_exists))
 
 ### DEBUG ONLY
