@@ -12,6 +12,7 @@ PYRT_GIT=https://github.com/dvoraka/py-rt.git
 SYSTEM=''
 DISTRIBUTION=''
 
+
 function clone_repos() {
 
     E=0
@@ -145,6 +146,38 @@ function create_virtenv() {
 
 }
 
+function activate_ve() {
+
+    source virtenvs/webrt/bin/activate
+
+}
+
+function deactivate_ve() {
+
+    deactivate
+
+}
+
+function install_dependencies() {
+
+    REPOS='py-rt webrt'
+    for REPO in $REPOS
+    do
+        if [ -d $REPO ]
+        then
+            cd $REPO
+            if [ -f requirements.txt ]
+            then
+                pip install -r requirements.txt
+            else
+                'requirements.txt not found'
+            fi
+            cd ..
+        fi
+    done
+
+}
+
 function install_virtualenv() {
 
     debian_install_ve
@@ -211,6 +244,12 @@ function complete_install() {
     echo ''
 
     create_virtenv
+
+    activate_ve
+
+    install_dependencies
+
+    deactivate_ve
 
 }
 
