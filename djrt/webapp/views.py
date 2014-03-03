@@ -10,6 +10,8 @@ from django.utils.translation import ugettext as _
 from django.contrib import auth
 from django.conf import settings
 
+from requests import ConnectionError
+
 import pyrt
 import wldap
 
@@ -67,10 +69,16 @@ def index(request):
         settings.PYRT.get('PASS', ''),
     )
 
-    tl = rt.search_ticket('creator="{}"'.format(request.user.username))
+    try:
 
-    tickets = tl.list_all()
-    
+        tl = rt.search_ticket('creator="{}"'.format(request.user.username))
+        tickets = tl.list_all()
+
+    except ConnectionError as e:
+        
+        print(e)
+        return show_msg(request, _("Connection to RT server failed"))
+
     return render(request, 'webapp/index.html', {
 
         'tickets': sorted(tickets, reverse=True)[:25],
