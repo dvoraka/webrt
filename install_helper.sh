@@ -103,11 +103,9 @@ function install_RT4() {
     if [ "$DISTRIBUTION" == 'debian' ]
     then
         debian_install_RT4
-        return 1
     elif [ "$DISTRIBUTION" == 'ubuntu' ]
     then
         ubuntu_install_RT4
-        return 2
     fi
 
 }
@@ -266,6 +264,27 @@ function complete_install() {
         install_dependencies
 
         deactivate_ve
+    fi
+
+    echo 'Checking RT4...'
+    if check_RT4
+    then
+        echo 'Request tracker 4 installed.'
+    else
+        echo "You don't have RT4 locally."
+        echo 'Do you want to install it?'
+        read -p 'y/n: ' choice
+        if [ "$choice" == 'y' ]
+        then
+            if install_RT4
+            then
+                echo 'RT install OK'
+            else
+                echo 'RT install problem!'
+            fi
+        else
+            echo 'No RT4 locally.'
+        fi
     fi
 
     echo ''
