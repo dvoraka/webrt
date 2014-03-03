@@ -130,7 +130,7 @@ function create_virtenv() {
             mkdir virtenvs
             virtualenv virtenvs/webrt
             echo 'Done.'
-            break
+            return 0
         else
             echo "You don't have virtualenv package."
             echo 'Do you want to install it?'
@@ -139,7 +139,7 @@ function create_virtenv() {
             then
                 install_virtualenv
             else
-                break
+                return 1
             fi
         fi
     done
@@ -243,13 +243,14 @@ function complete_install() {
 
     echo ''
 
-    create_virtenv
+    if create_virtenv
+    then
+        activate_ve
 
-    activate_ve
+        install_dependencies
 
-    install_dependencies
-
-    deactivate_ve
+        deactivate_ve
+    fi
 
 }
 
