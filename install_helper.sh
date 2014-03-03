@@ -4,6 +4,10 @@
 #
 # Helps with WebRT installation steps.
 #
+# Compatibility (tested):
+#   Debian: Wheezy
+#   Ubuntu
+#
 
 
 WEBRT_GIT=https://github.com/dvoraka/webrt.git
@@ -110,7 +114,7 @@ function install_RT4() {
 
 function debian_install_RT4() {
 
-    su root -c 'apt-get install request-tracker4'
+    su root -c 'aptitude install request-tracker4'
 
 }
 
@@ -180,13 +184,25 @@ function install_dependencies() {
 
 function install_virtualenv() {
 
-    debian_install_ve
+    if [ "$DISTRIBUTION" == 'debian' ]
+    then
+        debian_install_ve
+    elif [ "$DISTRIBUTION" == 'ubuntu' ]
+    then
+        ubuntu_install_ve
+    fi
 
 }
 
 function debian_install_ve() {
 
-    su root -c 'apt-get install python-virtualenv'
+    su root -c 'aptitude install python-virtualenv'
+
+}
+
+function ubuntu_install_ve() {
+
+    sudo apt-get install python-virtualenv
 
 }
 
@@ -252,6 +268,10 @@ function complete_install() {
         deactivate_ve
     fi
 
+    echo ''
+    echo 'Install complete.'
+    echo ''
+
 }
 
 function update() {
@@ -300,7 +320,8 @@ function proccess_input() {
 function main() {
 
     guess_system
-    echo $DISTRIBUTION
+    echo "Distribution: $DISTRIBUTION"
+    echo ''
 
     # show menu
     while true
