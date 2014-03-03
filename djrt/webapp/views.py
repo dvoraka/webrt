@@ -31,8 +31,15 @@ def show_ticket(request, id_):
         settings.PYRT.get('ADMIN', ''),
         settings.PYRT.get('PASS', ''),
     )
-    ticket = rt.get_ticket(id_)
-    ticket.load_all()
+    try:
+
+        ticket = rt.get_ticket(id_)
+        ticket.load_all()
+
+    except ConnectionError as e:
+        
+        print(e)
+        return show_msg(request, _("Connection to RT server failed"))
 
     if ticket.creator != request.user.username:
 
@@ -114,22 +121,30 @@ def add_ticket(request):
 
             place = form.cleaned_data['place']
 
-            mail = rt.get_usermail(username)
+            try:
 
-            ticket_data = {
-                'content':
-                'Queue: {}\nSubject: {} - {}\n'.format(
-                    queue,
-                    subject,
-                    place) +
-                'Text: {}\nRequestor: {}\n'.format(
-                    c_text,
-                    mail)
-            }
+                mail = rt.get_usermail(username)
 
-            rt.create_ticket(ticket_data)
+                ticket_data = {
+                    'content':
+                    'Queue: {}\nSubject: {} - {}\n'.format(
+                        queue,
+                        subject,
+                        place) +
+                    'Text: {}\nRequestor: {}\n'.format(
+                        c_text,
+                        mail)
+                }
 
-            return HttpResponseRedirect('/')
+                rt.create_ticket(ticket_data)
+
+                return HttpResponseRedirect('/')
+
+            except ConnectionError as e:
+                
+                print(e)
+                return show_msg(
+                    request, _("Connection to RT server failed"))
 
     else:
 
