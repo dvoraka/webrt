@@ -225,8 +225,16 @@ def add_comment(request, ticket_id):
             c_text = text.replace('\n', '\n ')
             c_text = c_text.replace('\r', '')
 
-            ticket = rt.get_ticket(ticket_id)
-            ticket.comment(c_text)
+            try:
+
+                ticket = rt.get_ticket(ticket_id)
+                ticket.comment(c_text)
+
+            except ConnectionError as e:
+                
+                print(e)
+                return show_msg(
+                    request, _("Connection to RT server failed"))
 
             return HttpResponseRedirect('/')
 
@@ -239,9 +247,17 @@ def add_comment(request, ticket_id):
             settings.PYRT.get('GLOBAL_PASS', ''),
         )
 
-        ticket = rt.get_ticket(ticket_id)
-        ticket.load_all()
-        content = ticket.history.history_list[-1].get('Content', '')
+        try:
+
+            ticket = rt.get_ticket(ticket_id)
+            ticket.load_all()
+            content = ticket.history.history_list[-1].get('Content', '')
+
+        except ConnectionError as e:
+
+                print(e)
+                return show_msg(
+                    request, _("Connection to RT server failed"))
 
         content2 = ''
         correspond_history = []
@@ -322,9 +338,17 @@ def registration(request):
                          lang)
                 }
 
-                #print(data)
-                # create RT user
-                rt.create_user(data)
+                try:
+
+                    #print(data)
+                    # create RT user
+                    rt.create_user(data)
+
+                except ConnectionError as e:
+                    
+                    print(e)
+                    return show_msg(
+                        request, _("Connection to RT server failed"))
 
                 # create Django user
                 dj_pass = settings.PYRT.get('DJ_PASS', 'test')
