@@ -7,7 +7,8 @@ from django.conf import settings
 from requests import ConnectionError
 
 import pyrt
-
+# web LDAP module
+import wldap
 
 class CustomBackend(object):
     '''Custom auth backend.
@@ -19,15 +20,14 @@ class CustomBackend(object):
     def authenticate(self, username=None, password=None):
         
         # auth sequence
-        # 1. CAS
+        # 1. LDAP (customizable through wldap module)
         # 2. Django user exists
         # 3. RT user exists
 
-        # CAS
-        import wldap # web LDAP module
+        # LDAP
         ldap = wldap.LDAP()
         authenticated = ldap.check_password(username, password)
-        #print('CAS: {}'.format(authenticated))
+        #print('LDAP: {}'.format(authenticated))
 
         # Django user exists
         exists = User.objects.filter(username=username).count()
@@ -46,7 +46,8 @@ class CustomBackend(object):
 
         except ConnectionError as e:
             
-            print(e)
+            #TODO: logging
+            #print(e)
             RT_exists = False
 
         #print('RT: {}'.format(RT_exists))
