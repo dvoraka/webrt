@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+from __future__ import print_function
 
 import datetime
 
@@ -24,6 +25,11 @@ from webapp.decorators import auth_req
 
 @auth_req
 def show_ticket(request, id_):
+    '''Show full ticket.
+    
+    Args:
+        id_ (str): Ticket's ID.
+    '''
 
     rt = pyrt.RT4(
         rest_url=settings.PYRT.get('REST_URL', ''))
@@ -68,6 +74,7 @@ def show_ticket(request, id_):
 
 @auth_req
 def index(request):
+    '''Index page with user's tickets.'''
 
     rt = pyrt.RT4(
         rest_url=settings.PYRT.get('REST_URL', ''))
@@ -96,6 +103,7 @@ def index(request):
 
 @auth_req
 def add_ticket(request):
+    '''Show new ticket form.'''
     
     if request.method == 'POST':
 
@@ -158,6 +166,7 @@ def add_ticket(request):
 
 
 def login(request):
+    '''Login page.'''
 
     if request.method == 'POST':
 
@@ -191,6 +200,7 @@ def login(request):
 
 @auth_req
 def logout(request):
+    '''Logout user, set session message and redirect.'''
     
     auth.logout(request)
 
@@ -205,7 +215,8 @@ def logout(request):
 def add_comment(request, ticket_id):
     '''Add comment for ticket.
 
-    @type ticket_id: str
+    Args:
+        ticket_id (str): Ticket's ID.
     '''
     
     if request.method == 'POST':
@@ -292,6 +303,7 @@ def add_comment(request, ticket_id):
 
 
 def registration(request):
+    '''Default registration page.'''
     
     if request.method == 'POST':
 
@@ -388,6 +400,11 @@ def message(request):
 
 
 def show_msg(request, message):
+    '''Set session field and redirect.
+
+    Args:
+        message (str): Message string.
+    '''
 
     request.session['message'] = message
 
