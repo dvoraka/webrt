@@ -33,11 +33,10 @@ def show_ticket(request, id_):
 
     rt = pyrt.RT4(
         rest_url=settings.PYRT.get('REST_URL', ''))
+    # load ticket with admin
     rt.login(
-#        settings.PYRT.get('ADMIN', ''),
-#        settings.PYRT.get('PASS', ''),
-        request.user.username,
-        settings.PYRT.get('GLOBAL_PASS', ''),
+        settings.PYRT.get('ADMIN', ''),
+        settings.PYRT.get('PASS', ''),
     )
     try:
 
@@ -51,12 +50,26 @@ def show_ticket(request, id_):
 
     if ticket.creator != request.user.username:
 
-        #print('This is not your ticket')
         request.session['message'] = (
             _("Permission denied.")
         )
 
         return HttpResponseRedirect('/message/')
+
+    # after checks load ticket with user's account
+    rt.login(
+        request.user.username,
+        settings.PYRT.get('GLOBAL_PASS', ''),
+    )
+    try:
+
+        ticket = rt.get_ticket(id_)
+        ticket.load_all()
+
+    except ConnectionError as e:
+        
+        print(e)
+        return show_msg(request, _("Connection to RT server failed"))
 
     # set user's timezone
     for history in ticket.history.history_list:
