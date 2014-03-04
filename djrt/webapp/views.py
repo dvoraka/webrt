@@ -34,8 +34,10 @@ def show_ticket(request, id_):
     rt = pyrt.RT4(
         rest_url=settings.PYRT.get('REST_URL', ''))
     rt.login(
-        settings.PYRT.get('ADMIN', ''),
-        settings.PYRT.get('PASS', ''),
+#        settings.PYRT.get('ADMIN', ''),
+#        settings.PYRT.get('PASS', ''),
+        request.user.username,
+        settings.PYRT.get('GLOBAL_PASS', ''),
     )
     try:
 
