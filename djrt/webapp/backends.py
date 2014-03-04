@@ -54,13 +54,14 @@ class CustomBackend(object):
 
 ### DEBUG ONLY
 ###################################
-#        exists = True
 #        authenticated = True
+#        exists = True
 #        RT_exists = True
+#        print(authenticated, exists, RT_exists)
 ###################################
 
         user = None
-        if exists and authenticated and RT_exists:
+        if authenticated and exists and RT_exists:
             
             user = User.objects.get(username=username)
 
