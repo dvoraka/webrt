@@ -33,7 +33,11 @@
                   <td class='author'>{{ hist_entry.Creator }}</td>
                </tr>
                <tr>
-                  <td colspan='2'><pre>{{ hist_entry.Content }}</pre></td>
+                 {% if hist_entry.Type != 'Status' %}
+                    <td colspan='2'><pre>{{ hist_entry.Content }}</pre></td>
+                 {% else %}
+                    <td colspan='2'><pre>{{ hist_entry.Description }}</pre></td>
+                 {% endif %}
                </tr>
                {% if forloop.last %}
                <tr>
