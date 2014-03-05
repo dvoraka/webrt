@@ -20,5 +20,5 @@ urlpatterns = patterns('',
     url(r'^$', 'webapp.views.index'),
     url(r'^reg/$', 'webapp.views.registration'),
     url(r'^message/$', 'webapp.views.message'),
-    url(r'^settings/$', 'webapp.views.settings'),
+    url(r'^settings/$', 'webapp.views.user_settings'),
 )

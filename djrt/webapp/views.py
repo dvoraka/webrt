@@ -330,7 +330,7 @@ def add_comment(request, ticket_id):
     })
 
 
-def settings(request):
+def user_settings(request):
 
     if request.method == 'POST':
 
@@ -342,6 +342,15 @@ def settings(request):
             print(lang)
 
     else:
+
+        lang = 'en'
+        try:
+
+            lang = request.user.i18nuser.lang.lower()
+
+        except Exception as e:
+            
+            print(e)
 
         form = SettingsForm(initial={'lang': 'cs'})
 
@@ -402,6 +411,7 @@ def registration(request):
 
                 try:
 
+                    #TODO: check user and mail in RT
                     #print(data)
                     # create RT user
                     rt.create_user(data)
