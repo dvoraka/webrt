@@ -201,16 +201,16 @@ def login(request):
 
                 auth.login(request, user)
 
-            lang = 'en'
-            try:
+                lang = 'en'
+                try:
 
-                lang = user.i18nuser.lang.lower()
+                    lang = user.i18nuser.lang.lower()
 
-            except ObjectDoesNotExist as e:
+                except ObjectDoesNotExist as e:
 
-                pass
+                    pass
 
-            request.session['django_language'] = lang
+                request.session['django_language'] = lang
 
             return HttpResponseRedirect('/')
 
