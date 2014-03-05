@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+from django.contrib.auth.models import User
+
+class I18nUser(models.Model):
+    user = models.OneToOneField(User)
+    lang = models.CharField(
+        max_length=10,
+        default='en')
