@@ -200,6 +200,11 @@ def login(request):
 
                 auth.login(request, user)
 
+            request.session['django_language'] = (
+                user.i18nuser.lang.lower()
+            )
+            print(request.session['django_language'])
+
             return HttpResponseRedirect('/')
 
     else:
@@ -380,9 +385,15 @@ def registration(request):
                 # create Django user
                 dj_pass = settings.PYRT.get('DJ_PASS', 'test')
                 from django.contrib.auth.models import User
+                from webapp.models import I18nUser
                 user = User.objects.create_user(
                     login, email, dj_pass)
+                iuser = I18nUser.objects.create(
+                    user=user)
+                iuser.lang = lang
+
                 user.save()
+                iuser.save()
 
             request.session['message'] = (
                 _("User account has been created.")
