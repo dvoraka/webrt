@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext as _
 from django.contrib import auth
 from django.conf import settings
+from django.db.models.base import ObjectDoesNotExist
 
 from requests import ConnectionError
 
@@ -200,10 +201,16 @@ def login(request):
 
                 auth.login(request, user)
 
-            request.session['django_language'] = (
-                user.i18nuser.lang.lower()
-            )
-            print(request.session['django_language'])
+            lang = 'en'
+            try:
+
+                lang = user.i18nuser.lang.lower()
+
+            except ObjectDoesNotExist as e:
+
+                pass
+
+            request.session['django_language'] = lang
 
             return HttpResponseRedirect('/')
 
