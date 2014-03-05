@@ -46,3 +46,13 @@ class RegForm(forms.Form):
     )
     lang = forms.ChoiceField(
         initial='CS', label=_("Language"), choices=langs)
+
+
+class SettingsForm(forms.Form):
+ 
+    langs = (
+        ('EN', _("English")),
+        ('CS', _("Czech")),
+    )
+    lang = forms.ChoiceField(
+        initial='EN', label=_("Language"), choices=langs)
