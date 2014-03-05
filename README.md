@@ -20,6 +20,8 @@ Include /etc/request-tracker4/apache2-modperl2.conf
 RedirectMatch ^/$ /rt
 ```
 
+It's probably better to use HTTPS if RT4 is not locally.
+
 After install RT4:
 
 * create queue and change settings.py
