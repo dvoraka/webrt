@@ -41,11 +41,11 @@ class RegForm(forms.Form):
     email = forms.EmailField(label=_("Email"))
 
     langs = (
-        ('EN', _("English")),
-        ('CS', _("Czech")),
+        ('en', _("English")),
+        ('cs', _("Czech")),
     )
     lang = forms.ChoiceField(
-        initial='CS', label=_("Language"), choices=langs)
+        initial='en', label=_("Language"), choices=langs)
 
 
 class SettingsForm(forms.Form):
