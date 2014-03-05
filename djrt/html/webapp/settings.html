@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class='login'>{% trans "Settings" %} %}</h1>
+    <h1 class='login'>{% trans "Settings" %}</h1>
     <form action='' method='post'>{% csrf_token %}
         <fieldset>
             {{ form.as_p }}

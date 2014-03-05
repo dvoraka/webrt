@@ -21,6 +21,7 @@ from webapp.forms import AddTicketForm
 from webapp.forms import AddCommentForm
 from webapp.forms import LoginForm
 from webapp.forms import RegForm
+from webapp.forms import SettingsForm
 from webapp.decorators import auth_req
 
 
@@ -325,6 +326,28 @@ def add_comment(request, ticket_id):
         'form': form,
         'ticket_id': ticket_id,
         'content': content,
+
+    })
+
+
+def settings(request):
+
+    if request.method == 'POST':
+
+        form = SettingsForm(request.POST)
+
+        if form.is_valid():
+
+            lang = form.cleaned_data['lang']
+            print(lang)
+
+    else:
+
+        form = SettingsForm(initial={'lang': 'cs'})
+
+    return render(request, 'webapp/settings.html', {
+
+        'form': form,
 
     })
 
