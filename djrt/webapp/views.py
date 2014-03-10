@@ -330,7 +330,9 @@ def add_comment(request, ticket_id):
     })
 
 
+@auth_req
 def user_settings(request):
+    '''User settings page.'''
 
     if request.method == 'POST':
 
