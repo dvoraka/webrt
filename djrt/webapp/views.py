@@ -339,7 +339,13 @@ def user_settings(request):
         if form.is_valid():
 
             lang = form.cleaned_data['lang']
-            print(lang)
+            i18nuser = request.user.i18nuser
+            i18nuser.lang = lang
+            i18nuser.save()
+
+            request.session['django_language'] = i18nuser.lang
+
+            return HttpResponseRedirect('/')
 
     else:
 
@@ -352,7 +358,7 @@ def user_settings(request):
             
             print(e)
 
-        form = SettingsForm(initial={'lang': 'cs'})
+        form = SettingsForm(initial={'lang': lang})
 
     return render(request, 'webapp/settings.html', {
 
