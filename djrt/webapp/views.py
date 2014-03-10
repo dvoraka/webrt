@@ -347,6 +347,32 @@ def user_settings(request):
 
             request.session['django_language'] = i18nuser.lang
 
+            # RT4 settings
+            rt = pyrt.RT4(
+                rest_url=settings.PYRT.get('REST_URL', ''))
+            rt.login(
+                settings.PYRT.get('ROOT', ''),
+                settings.PYRT.get('ROOT_PASS', ''),
+            )
+
+            # prepare data
+            user_data = {
+                'content':
+                'id: {}\nLang: {}\n'.format(
+                    request.user.username,
+                    lang,
+                 )
+            }
+
+            try:
+
+                rt.set_userlang(request.user.username, user_data)
+
+            except ConnectionError as e:
+                
+                print(e)
+                return show_msg(request, _("Connection to RT server failed"))
+
             return HttpResponseRedirect('/')
 
     else:
