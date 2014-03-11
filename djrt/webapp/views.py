@@ -11,6 +11,7 @@ from django.utils.translation import ugettext as _
 from django.contrib import auth
 from django.conf import settings
 from django.db.models.base import ObjectDoesNotExist
+from django.utils import translation
 
 from requests import ConnectionError
 
@@ -185,6 +186,7 @@ def add_ticket(request):
 def login(request):
     '''Login page.'''
 
+    lang = settings.LANGUAGE_CODE
     if request.method == 'POST':
 
         form = LoginForm(request.POST)
@@ -202,7 +204,6 @@ def login(request):
 
                 auth.login(request, user)
 
-                lang = 'en'
                 try:
 
                     lang = user.i18nuser.lang.lower()
@@ -217,6 +218,8 @@ def login(request):
 
     else:
 
+        request.session['django_language'] = lang
+        translation.activate(lang)
         form = LoginForm()
    
     return render(request, 'webapp/login.html', {
