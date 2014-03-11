@@ -22,8 +22,8 @@ function clone_repos() {
     E=0
 
     echo 'Cloning Webrt...'
-    git clone $WEBRT_GIT
-    if [ $? -eq 0 ]
+    git clone "$WEBRT_GIT"
+    if [ "$?" -eq 0 ]
     then
         echo 'Success.'
     else
@@ -33,8 +33,8 @@ function clone_repos() {
     echo ''
 
     echo 'Cloning py-rt...'
-    git clone $PYRT_GIT
-    if [ $? -eq 0 ]
+    git clone "$PYRT_GIT"
+    if [ "$?" -eq 0 ]
     then
         echo 'Success.'
     else
@@ -165,9 +165,9 @@ function install_dependencies() {
     REPOS='py-rt webrt'
     for REPO in $REPOS
     do
-        if [ -d $REPO ]
+        if [ -d "$REPO" ]
         then
-            cd $REPO
+            cd "$REPO"
             if [ -f requirements.txt ]
             then
                 pip install -r requirements.txt
