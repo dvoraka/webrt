@@ -33,9 +33,9 @@ class LoginForm(forms.Form):
 
 class RegForm(forms.Form):
     
-    login = forms.CharField(label=_("CAS login"))
+    login = forms.CharField(label=_("LDAP login"))
     password = forms.CharField(
-        label=_("CAS password"),
+        label=_("LDAP password"),
         widget=forms.PasswordInput
     )
     email = forms.EmailField(label=_("Email"))

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-28 11:59+0100\n"
+"POT-Creation-Date: 2014-03-11 10:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: dvoraka <alen.dvorak@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -18,7 +18,8 @@ msgstr ""
 #: html/webapp/add_ticket.html:6 html/webapp/comment.html:6
 #: html/webapp/index.html:6 html/webapp/login.html:6
 #: html/webapp/message.html:6 html/webapp/registration.html:6
-#: html/webapp/registration.html.py:13 html/webapp/show_ticket.html:6
+#: html/webapp/registration.html.py:13 html/webapp/settings.html:6
+#: html/webapp/show_ticket.html:6
 msgid "Helpdesk"
 msgstr "Helpdesk"
 
@@ -33,6 +34,10 @@ msgstr "Odeslat"
 #: html/webapp/base.html:19
 msgid "Logout"
 msgstr "Odhlásit"
+
+#: html/webapp/base.html:20 html/webapp/settings.html:13
+msgid "Settings"
+msgstr "Nastavení"
 
 #: html/webapp/comment.html:10
 msgid "Add comment"
@@ -70,11 +75,15 @@ msgstr "Registrovat se do"
 msgid "Register"
 msgstr "Registrovat"
 
+#: html/webapp/settings.html:17
+msgid "Save"
+msgstr "Uložit"
+
 #: html/webapp/show_ticket.html:26
 msgid "Ticket's detail"
 msgstr "Detail požadavku"
 
-#: html/webapp/show_ticket.html:40
+#: html/webapp/show_ticket.html:44
 msgid "Comment"
 msgstr "Komentovat"
 
@@ -95,33 +104,43 @@ msgid "password"
 msgstr "heslo"
 
 #: webapp/forms.py:36
-msgid "CAS login"
-msgstr "CAS login"
+msgid "LDAP login"
+msgstr "LDAP login"
 
 #: webapp/forms.py:38
-msgid "CAS password"
-msgstr "CAS heslo"
+msgid "LDAP password"
+msgstr "LDAP heslo"
 
 #: webapp/forms.py:41
 msgid "Email"
 msgstr "email"
 
-#: webapp/forms.py:44
+#: webapp/forms.py:44 webapp/forms.py:54
 msgid "English"
-msgstr ""
+msgstr "Angličtina"
 
-#: webapp/forms.py:45
+#: webapp/forms.py:45 webapp/forms.py:55
 msgid "Czech"
-msgstr ""
+msgstr "Čeština"
 
-#: webapp/forms.py:48
+#: webapp/forms.py:48 webapp/forms.py:58
 msgid "Language"
 msgstr "Jazyk"
 
-#: webapp/views.py:166
+#: webapp/views.py:51 webapp/views.py:74 webapp/views.py:111
+#: webapp/views.py:172 webapp/views.py:276 webapp/views.py:299
+#: webapp/views.py:374 webapp/views.py:457
+msgid "Connection to RT server failed"
+msgstr "Spojení na RT4 server se nezdařilo"
+
+#: webapp/views.py:56
+msgid "Permission denied."
+msgstr "Přístup zamítnut"
+
+#: webapp/views.py:236
 msgid "You have been logged out!"
 msgstr "Byl jste odhlášen ze systému!"
 
-#: webapp/views.py:306
+#: webapp/views.py:473
 msgid "User account has been created."
 msgstr "Účet do systému byl vytvořen."
