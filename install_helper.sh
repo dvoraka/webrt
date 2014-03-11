@@ -204,6 +204,25 @@ function ubuntu_install_ve() {
 
 }
 
+function update_repositories() {
+
+    REPOS='py-rt webrt'
+    BRANCH='master'
+    for REPO in $REPOS
+    do
+        if [ -d "$REPO" ]
+        then
+            cd "$REPO"
+            echo 'Updating...'
+            git checkout $BRANCH
+            git pull
+            echo 'Done.'
+            cd ..
+        fi
+    done
+
+}
+
 function guess_system() {
 
     SYSTEM=`uname`
@@ -295,7 +314,9 @@ function complete_install() {
 
 function update() {
 
-    echo 'Update'
+    echo 'Update:'
+    update_repositories
+    echo 'Update complete.'
 
 }
 
