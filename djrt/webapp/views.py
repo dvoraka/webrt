@@ -492,7 +492,7 @@ def registration(request):
 def message(request):
     '''Show message according to session.'''
 
-    message = request.session.get('message', None)
+    message = request.session.get('message', '')
     request.session['message'] = ''
 
     return render(request, 'webapp/message.html', {
