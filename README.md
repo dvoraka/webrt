@@ -27,3 +27,8 @@ After install RT4:
 * create queue and change settings.py
 * add rights to queue
 * create privileged user and change settings.py
+
+For LDAP (Wheezy):
+* python-dev
+* libsasl2-dev
+* libldap2-dev
