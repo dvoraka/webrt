@@ -472,11 +472,21 @@ def registration(request):
                 user.save()
                 iuser.save()
 
-            request.session['message'] = (
-                _("User account has been created.")
-            )
+                request.session['message'] = (
+                    _("User account has been created.")
+                )
 
-            return HttpResponseRedirect('/message/')
+                return HttpResponseRedirect('/message/')
+
+            else:
+
+                #TODO: logging
+                request.session['message'] = (
+
+                    _("User account has not been created.")
+                )
+
+                return HttpResponseRedirect('/message/')
 
     else:
 
