@@ -16,6 +16,9 @@ PYRT_GIT=https://github.com/dvoraka/py-rt.git
 SYSTEM=''
 DISTRIBUTION=''
 
+DEBIAN_PKGS='python-dev libsasl2-dev libldap2-dev'
+UBUNTU_PKGS='python-dev libsasl2-dev libldap2-dev'
+
 
 function clone_repos() {
 
@@ -192,6 +195,30 @@ function install_virtualenv() {
 
 }
 
+function install_pkgs() {
+
+    if [ "$DISTRIBUTION" == 'debian' ]
+    then
+        debian_install_pkgs
+    elif [ "$DISTRIBUTION" == 'ubuntu' ]
+    then
+        ubuntu_install_pkgs
+    fi
+
+}
+
+function debian_install_pkgs() {
+
+    su root -c "aptitude install $DEBIAN_PKGS"
+
+}
+
+function ubuntu_install_pkgs() {
+
+    sudo apt-get install $UBUNTU_PKGS
+
+}
+
 function debian_install_ve() {
 
     su root -c 'aptitude install python-virtualenv'
@@ -276,6 +303,11 @@ function complete_install() {
 
     echo ''
 
+    echo 'Installing packages...'
+    install_pkgs
+    echo 'Done.'
+    echo ''
+
     if create_virtenv
     then
         activate_ve
@@ -320,6 +352,13 @@ function update() {
 
 }
 
+function debug() {
+
+    echo 'Debug:'
+    echo 'Debug end!'
+
+}
+
 function show_menu() {
 
     echo '----'
@@ -343,6 +382,9 @@ function proccess_input() {
         ;;
         2)
             update
+        ;;
+        d)
+            debug
         ;;
         9 | q)
             exit 0
