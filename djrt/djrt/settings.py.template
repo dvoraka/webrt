@@ -40,7 +40,7 @@ TIME_ZONE = 'Europe/Prague'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 # Default language
-LANGUAGE_CODE = 'cs'
+LANGUAGE_CODE = 'en'
 
 LOCALE_PATHS = (
     os.path.join(os.path.split(os.path.dirname(__file__))[0], 'locale'),
