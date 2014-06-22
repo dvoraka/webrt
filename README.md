@@ -7,6 +7,7 @@ Logo file is named /static/logo.png and its size is 960x115 px.
 Install helper:
 https://raw.github.com/dvoraka/webrt/master/install_helper.sh
 
+![](/imgs/login.png)
 #### Notes:
 
 Debian Wheezy RT4 install:
