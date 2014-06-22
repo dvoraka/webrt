@@ -8,6 +8,7 @@ Install helper:
 https://raw.github.com/dvoraka/webrt/master/install_helper.sh
 
 ![](/imgs/login.png)
+![](/imgs/afterlogin.png)
 #### Notes:
 
 Debian Wheezy RT4 install:
