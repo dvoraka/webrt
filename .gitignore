@@ -3,6 +3,5 @@
 # swap files
 *.swp
 
-logo.png
 settings.py
 djrt.db
