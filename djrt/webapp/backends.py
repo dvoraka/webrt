@@ -12,13 +12,13 @@ import wldap
 
 class CustomBackend(object):
     '''Custom auth backend.
-    
+
     It is disabled in settings.py by default.'''
-    
+
     supports_inactive_user = False
 
     def authenticate(self, username=None, password=None):
-        
+
         # auth sequence
         # 1. LDAP (customizable through wldap module)
         # 2. Django user exists
@@ -45,7 +45,7 @@ class CustomBackend(object):
             RT_exists = rt.user_exists(username)
 
         except ConnectionError as e:
-            
+
             #TODO: logging
             #print(e)
             RT_exists = False
@@ -62,17 +62,17 @@ class CustomBackend(object):
 
         user = None
         if authenticated and exists and RT_exists:
-            
+
             user = User.objects.get(username=username)
 
         return user
 
     def get_user(self, user_id):
-        
+
         try:
-            
+
             return User.objects.get(pk=user_id)
 
         except User.DoesNotExist:
-            
+
             return None

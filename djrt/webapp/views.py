@@ -29,7 +29,7 @@ from webapp.decorators import auth_req
 @auth_req
 def show_ticket(request, id_):
     '''Show full ticket.
-    
+
     Args:
         id_ (str): Ticket's ID.
     '''
@@ -47,7 +47,7 @@ def show_ticket(request, id_):
         ticket.load_all()
 
     except ConnectionError as e:
-        
+
         print(e)
         return show_msg(request, _("Connection to RT server failed"))
 
@@ -70,7 +70,7 @@ def show_ticket(request, id_):
         ticket.load_all()
 
     except ConnectionError as e:
-        
+
         print(e)
         return show_msg(request, _("Connection to RT server failed"))
 
@@ -82,7 +82,7 @@ def show_ticket(request, id_):
         delta = datetime.timedelta(
             hours=settings.PYRT.get('TIME_DELTA', 0))
         history['Created'] = (utc + delta).isoformat(str(' '))
- 
+
     return render(request, 'webapp/show_ticket.html', {
 
         'ticket': ticket,
@@ -107,7 +107,7 @@ def index(request):
         tickets = tl.list_all()
 
     except ConnectionError as e:
-        
+
         print(e)
         return show_msg(request, _("Connection to RT server failed"))
 
@@ -122,7 +122,7 @@ def index(request):
 @auth_req
 def add_ticket(request):
     '''Show new ticket form.'''
-    
+
     if request.method == 'POST':
 
         form = AddTicketForm(request.POST)
@@ -167,7 +167,7 @@ def add_ticket(request):
                 return HttpResponseRedirect('/')
 
             except ConnectionError as e:
-                
+
                 print(e)
                 return show_msg(
                     request, _("Connection to RT server failed"))
@@ -221,7 +221,7 @@ def login(request):
         request.session['django_language'] = lang
         translation.activate(lang)
         form = LoginForm()
-   
+
     return render(request, 'webapp/login.html', {
 
         'form': form,
@@ -232,7 +232,7 @@ def login(request):
 @auth_req
 def logout(request):
     '''Logout user, set session message and redirect.'''
-    
+
     auth.logout(request)
 
     request.session['message'] = (
@@ -249,7 +249,7 @@ def add_comment(request, ticket_id):
     Args:
         ticket_id (str): Ticket's ID.
     '''
-    
+
     if request.method == 'POST':
 
         form = AddCommentForm(request.POST)
@@ -273,7 +273,7 @@ def add_comment(request, ticket_id):
                 ticket.comment(c_text)
 
             except ConnectionError as e:
-                
+
                 print(e)
                 return show_msg(
                     request, _("Connection to RT server failed"))
@@ -372,7 +372,7 @@ def user_settings(request):
                 rt.set_userlang(request.user.username, user_data)
 
             except ConnectionError as e:
-                
+
                 print(e)
                 return show_msg(request, _("Connection to RT server failed"))
 
@@ -386,7 +386,7 @@ def user_settings(request):
             lang = request.user.i18nuser.lang.lower()
 
         except Exception as e:
-            
+
             print(e)
 
         form = SettingsForm(initial={'lang': lang})
@@ -400,7 +400,7 @@ def user_settings(request):
 
 def registration(request):
     '''Default registration page.'''
-    
+
     if request.method == 'POST':
 
         form = RegForm(request.POST)
@@ -454,7 +454,7 @@ def registration(request):
                     rt.create_user(data)
 
                 except ConnectionError as e:
-                    
+
                     print(e)
                     return show_msg(
                         request, _("Connection to RT server failed"))

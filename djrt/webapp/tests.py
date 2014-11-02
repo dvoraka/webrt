@@ -16,7 +16,7 @@ class SimpleSeleniumTest(LiveServerTestCase):
 
         self.browser.quit()
 
-    def test_login(self):    
+    def test_login(self):
 
         self.browser.get(self.live_server_url + '/login/')
         self.browser.find_element_by_id('logo')

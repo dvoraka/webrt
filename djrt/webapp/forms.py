@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class AddTicketForm(forms.Form):
-    
+
     subject = forms.CharField(label=_("Subject"))
     plcs = settings.PYRT.get('PLACES')
     place = forms.ChoiceField(
@@ -17,13 +17,13 @@ class AddTicketForm(forms.Form):
 
 
 class AddCommentForm(forms.Form):
-    
+
     comment = forms.CharField(label='', widget=forms.Textarea(
         attrs={'rows': 20, 'cols': 70, 'autofocus': 'autofocus'}))
 
 
 class LoginForm(forms.Form):
-    
+
     login = forms.CharField(label=_("username"))
     password = forms.CharField(
         label=_("password"),
@@ -32,7 +32,7 @@ class LoginForm(forms.Form):
 
 
 class RegForm(forms.Form):
-    
+
     login = forms.CharField(label=_("LDAP login"))
     password = forms.CharField(
         label=_("LDAP password"),
@@ -49,7 +49,7 @@ class RegForm(forms.Form):
 
 
 class SettingsForm(forms.Form):
- 
+
     langs = (
         ('en', _("English")),
         ('cs', _("Czech")),
