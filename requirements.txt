@@ -1,6 +1,5 @@
 Django==1.6.5
 argparse==1.2.1
-distribute==0.6.24
 python-ldap==2.4.14
 requests==2.2.1
-wsgiref==0.1.2
+py-rt==0.2.1
