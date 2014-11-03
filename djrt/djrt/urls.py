@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include, url  # NOQA
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin

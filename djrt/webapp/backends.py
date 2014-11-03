@@ -28,11 +28,11 @@ class CustomBackend(object):
         # LDAP
         ldap = wldap.LDAP()
         authenticated = ldap.check_password(username, password)
-        #print('LDAP: {}'.format(authenticated))
+        # print('LDAP: {}'.format(authenticated))
 
         # Django user exists
         exists = User.objects.filter(username=username).count()
-        #print('Django: {}'.format(bool(exists)))
+        # print('Django: {}'.format(bool(exists)))
 
         # RT user exists
         rt = pyrt.RT4(
@@ -48,12 +48,12 @@ class CustomBackend(object):
         except ConnectionError as e:  # NOQA
 
             # TODO: logging
-            #print(e)
+            # print(e)
             RT_exists = False
 
-        #print('RT: {}'.format(RT_exists))
+        # print('RT: {}'.format(RT_exists))
 
-### DEBUG ONLY
+# ## DEBUG ONLY
 ###################################
 #        authenticated = True
 #        exists = True

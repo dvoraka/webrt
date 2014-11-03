@@ -1,8 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.keys import Keys
 
 from django.test import LiveServerTestCase
-from django.conf import settings
+# from django.conf import settings
 
 
 class SimpleSeleniumTest(LiveServerTestCase):
@@ -10,7 +10,7 @@ class SimpleSeleniumTest(LiveServerTestCase):
     def setUp(self):
 
         self.browser = webdriver.Firefox()
-        #settings.DEBUG = True
+        # settings.DEBUG = True
 
     def tearDown(self):
 

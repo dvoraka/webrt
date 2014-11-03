@@ -416,14 +416,14 @@ def registration(request):
             cas_auth = myldap.check_password(login, password)
             staff = myldap.is_staff(login)
 ################################################
-### DEBUG ONLY
+# ## DEBUG ONLY
 #####################
 #            cas_auth = True
 #            staff = True
 #####################
             if cas_auth and staff:
 
-                #print('Creating user...')
+                # print('Creating user...')
                 rt = pyrt.RT4(
                     rest_url=settings.PYRT.get('REST_URL', ''))
                 rt.login(
@@ -451,7 +451,7 @@ def registration(request):
                 try:
 
                     # TODO: check user and mail in RT
-                    #print(data)
+                    # print(data)
                     # create RT user
                     rt.create_user(data)
 
@@ -482,7 +482,7 @@ def registration(request):
 
             else:
 
-                #TODO: logging
+                # TODO: logging
                 request.session['message'] = (
 
                     _("User account has not been created.")
