@@ -199,7 +199,7 @@ def login(request):
             user = auth.authenticate(
                 username=login, password=pwd)
 
-            #print(user)
+            # print(user)
             if user and user.is_active:
 
                 auth.login(request, user)
@@ -208,7 +208,7 @@ def login(request):
 
                     lang = user.i18nuser.lang.lower()
 
-                except ObjectDoesNotExist as e:
+                except ObjectDoesNotExist:
 
                     pass
 
@@ -364,7 +364,7 @@ def user_settings(request):
                 'id: {}\nLang: {}\n'.format(
                     request.user.username,
                     lang,
-                 )
+                )
             }
 
             try:
@@ -432,23 +432,25 @@ def registration(request):
                 )
 
                 data = {
-                    'content':
-                    ('Name: {}\n'
-                     'RealName: {}\n'
-                     'Password: {}\n'
-                     'EmailAddress: {}\n'
-                     'Lang: {}\n'
-                     'Privileged: 1\n').format(
-                         login,
-                         login,
-                         settings.PYRT.get('GLOBAL_PASS', ''),
-                         email,
-                         lang)
+                    'content': (
+                        'Name: {}\n'
+                        'RealName: {}\n'
+                        'Password: {}\n'
+                        'EmailAddress: {}\n'
+                        'Lang: {}\n'
+                        'Privileged: 1\n'
+                    ).format(
+                        login,
+                        login,
+                        settings.PYRT.get('GLOBAL_PASS', ''),
+                        email,
+                        lang
+                    )
                 }
 
                 try:
 
-                    #TODO: check user and mail in RT
+                    # TODO: check user and mail in RT
                     #print(data)
                     # create RT user
                     rt.create_user(data)

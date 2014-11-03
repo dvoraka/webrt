@@ -10,6 +10,7 @@ import pyrt
 # web LDAP module
 import wldap
 
+
 class CustomBackend(object):
     '''Custom auth backend.
 
@@ -44,9 +45,9 @@ class CustomBackend(object):
 
             RT_exists = rt.user_exists(username)
 
-        except ConnectionError as e:
+        except ConnectionError as e:  # NOQA
 
-            #TODO: logging
+            # TODO: logging
             #print(e)
             RT_exists = False
 
