@@ -1,8 +1,8 @@
-Introduction
+Web helpdesk interface
 =====
 [![Build Status](https://travis-ci.org/dvoraka/webrt.svg?branch=master)](https://travis-ci.org/dvoraka/webrt)
 
-Web interface using Django and [py-rt](https://github.com/dvoraka/py-rt) library.
+Web helpdesk interface using Django and [py-rt](https://github.com/dvoraka/py-rt) library. A simple interface with SSO for enterprise helpdesk solution [Request tracker](https://bestpractical.com/request-tracker/).
 
 Logo file is named /static/logo.png and its size is 960x115 px.
 
